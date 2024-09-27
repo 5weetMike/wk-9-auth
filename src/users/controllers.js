@@ -17,7 +17,7 @@ res.status(501).json({message: error.message, error: error});
 
 const login = async (req, res) => {
     try{
-        res.status(201).json({message: "success", user: req.user.username});
+        res.status(201).json({message: "success", user: req.user});
     }catch{
         res.status(501).json({message: error.message, error: error});
 
@@ -26,8 +26,8 @@ const login = async (req, res) => {
 
 const getAllUsers = async (request, response) => {
     try {
-        const user = await User.findAll({});
-        response.status(201).json({message: "success", user: user});
+        const users = await User.findAll({});
+        response.status(201).json({message: "success", users: users});
     } catch (error){
         response.status(501).json({message: error.message, error: error});
     }};

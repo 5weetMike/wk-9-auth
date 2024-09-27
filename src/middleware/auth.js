@@ -14,12 +14,13 @@ const hashPass = async (req, res, next) => {
 
         //step3: use next()
         next();
-    }catch{
+    }catch(error){
         res.status(501).json({message: error.message, error: error});
     }
 };
 
 const comparePass = async (req, res, next) => {
+    console.log(req.body)
     try{
         //step1: find user using the username (req.body.username)
         const user = await User.findOne({where: {username:req.body.username}});
@@ -33,7 +34,7 @@ const comparePass = async (req, res, next) => {
         req.user = user;
         //step5: next()
         next();
-    }catch{
+    }catch(error){
         res.status(501).json({message: error.message, error: error});
 
     }
